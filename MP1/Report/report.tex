@@ -78,11 +78,11 @@ Lafayette, LA 70504\\
 \hspace{0.08\textwidth}
 \begin{minipage}{0.45\textwidth}
 \begin{center}
-Travis \\
+Travis Mouisset \\
 Department of Mechanical Engineering\\
 University of Louisiana at Lafayette\\
 Lafayette, LA 70504\\
-\tt{CLID4@louisiana.edu}
+\tt{tlm6002@louisiana.edu}
 \end{center}
 \end{minipage}
 \end{figure}
@@ -92,7 +92,7 @@ Lafayette, LA 70504\\
 \thispagestyle{empty}
 \begin{abstract}
 \vspace{-0.2in}
-In the analysis of mechanical systems, vibrations are bound to occur. Many systems are quite complex, so finding the system characteristics, such as the natural frequency and damping ratio, are not trivial. However, these characteristics can be analyzed and estimated given data from recording the vibration of the system. In this report, the natural frequency and damping ratios of four systems are estimated using various system identification methods after trimming the recorded data to include only the clean portion of free vibration of the system.
+In the analysis of mechanical systems, vibrations are bound to occur. Many systems are quite complex, so finding the system characteristics, such as the natural frequency and damping ratio, are not trivial. However, these characteristics can be analyzed and estimated using recorded data of the system's vibration. In this report, the natural frequency and damping ratios of four systems are estimated using various system identification methods after trimming the recorded data to include only the clean portion of free vibration of the system. These methods include calculating natural frequencies via FFT and zero-crossings analysis, as well as calculating damping ratios using log-decrement methods and maxima and minima analysis.
 \end{abstract} 
 
 \newpage
@@ -106,7 +106,7 @@ In the analysis of mechanical systems, vibrations are bound to occur. Many syste
 \section{Introduction}
 \label{sec:intro}
 \vspace{-0.2in}
-The data retrieved from a particular system can be hard to interpret because of excessive noise clouding the results. Because of this it is important to clean up the data as much as possible before attempting to get accurate values from it. In this report, the data will be trimmed to only include the portion where free vibration is observed and will then be smoothed to decrease the effect of noise on the calculations. The processed data will be used to calculate the natural frequency of the system using zero-crossing analysis and FFT, as well as the damping ratio by peak analysis.
+The data retrieved from a particular system can be hard to interpret because of excessive noise clouding the results. Because of this it is important to clean up the data as much as possible before attempting to get accurate values from it. In this report, the data will be trimmed to only include the portion where free vibration is observed and will then be smoothed to decrease the effect of noise on the calculations. The processed data will be used to calculate the natural frequency of the system using zero-crossing analysis and FFT, as well as the damping ratio by peak analysis and log-dec methods.
 \bigskip
 
 Data recorded from four systems is provided for this project. The raw data is then run through a python program that takes the data as input and performs the necessary calculations and plots the results. The plots include raw data, smoothed data, zero crossings and peak analysis, and FFT. An example plot showing zero crossings and peaks can be seen in Figure 1.
@@ -121,7 +121,7 @@ Data recorded from four systems is provided for this project. The raw data is th
 
 \bigskip
 
-The natural frequency can be estimated by zero-crossings analysis using the period of oscillation, defined as the time between zero crossings of similar slopes by using Equation 1. The natural frequency can be calculated using either one period, or multiple periods and taking the average value. Using multiple periods gives a more accurate result as it encompasses more data. 
+The natural frequency, $\omega_{n}$, can be estimated by zero-crossings analysis using the period of oscillation, defined as the time between zero crossings of similar slopes, by using Equation 1. The natural frequency can be calculated using either one period or multiple periods and taking the average value. Using multiple periods gives a more accurate result as it encompasses more data. 
 \bigskip
 
 
@@ -144,7 +144,7 @@ The natural frequency can also be estimated using the Fast Fourier Transform (FF
 
 \bigskip
 
-The damping ratio of the system can be estimated by analyzing the local minima and maxima (peaks) of oscillation during free vibration. In order to do so, $\sigma$ must be calculated by using Equation 2, where $x(0)$ is the value of the first peak (positive or negative) and $N\tau$ is the peak observed $N$ periods after the initial peak. After $\sigma$ is calculated, it can be used in Equation 3 to calculate $\zeta$. 
+The damping ratio, $\zeta$, of the system can be estimated by analyzing the local minima and maxima (peaks) of oscillation during free vibration. In order to do so, $\sigma$ must be calculated by using Equation 2, where $x(0)$ is the value of the first peak (positive or negative) and $N\tau$ is the peak observed $N$ periods after $x(0)$. After $\sigma$ is calculated, it can be used in Equation 3 to calculate $\zeta$. 
 
 \begin{equation}
 \sigma = \frac{1}{N}ln\left(\frac{x(0)}{x(N\tau)}\right)
@@ -224,7 +224,7 @@ The processed data (trimmed and smoothed) from data sets 1 through 4 can be seen
 \end{table}
 \bigskip
 
-It can be seen that the damping ratio for the third data set should be higher than that of the first two data sets, as the vibration decays more quickly. The results seen in Table 1 agree with this estimation, which reflects the results should be moderately accurate. The natural frequency calculated by use of zero-crossings analysis also seems to closely match the results calculated by the FFT program. It should be noted that the natural frequencies calculated by the program are more accurately defined as the damping frequencies, because the systems recorded in each data set are damped.
+It can be seen in Figure 3 through Figure 5 that the damping ratio for the third data set should be higher than that of the first two data sets, as the vibration decays more quickly. The results seen in Table 1 agree with this estimation, which reflects that the results should be moderately accurate. The natural frequency calculated by use of zero-crossings analysis also seems to closely match the results calculated by the FFT program. It should be noted that the natural frequencies calculated by the program are more accurately defined as the damped frequencies, because the systems recorded in each data set are damped.
 \bigskip
 
 The damping ratios for data sets one, two, and three were consistent when using maxima and minima, however the values calculated for data set four varied more greatly between maxima and minima analysis. The average therefore may not be as accurate as the averages found in data sets one, two, and three.
@@ -236,10 +236,6 @@ The damping ratios for data sets one, two, and three were consistent when using 
 \label{sec:conclusion}
 \vspace{-0.2in}
 In this report, four sets of data are trimmed and smoothed. This processed data was then used to calculate the natural frequency and damping ratio of each system. The natural frequency was calculated using zero-crossings analysis as well as FFT analysis. The damping ratios were also calculated by using local extrema. The natural frequencies calculated by both methods closely match for all systems. The damping ratios for data sets one, two, and three were consistent by using maxima and minima, however data set four was found to be inconsistent between maxima and minima analysis.
-
-
-
-
 
 
 \end{document}
